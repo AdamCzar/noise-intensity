@@ -26,6 +26,18 @@ thor.activate(controller)
 
 
 # Conduct sweep
+print('Moving Motor to start')
+controller.MoveTo(Decimal(start), 0) # immediately continue
+time.sleep(.25)
+
+# Sweep specified range
+n = int((end - start)/step)
+print('Sweeping')
+for i in range(n):
+    current_pos = controller.Position.ToString()
+    controller.MoveTo(Decimal(current_pos) + Decimal(step))
+
+print('Finished Sweeping')
 
 
 # Disconnect Thorlabs stage once sweep is complete
