@@ -69,7 +69,7 @@ def initialize():
 
 
     # Initializing Scope Module
-    MIN_NUMBER_OF_RECORDS = 5
+    #MIN_NUMBER_OF_RECORDS = 5
 
     scope_module = session.modules.scope
     scope_module.mode(1)
@@ -189,6 +189,7 @@ def extract_stats(records):
 
 
 device, scope_module = initialize()
+MIN_NUMBER_OF_RECORDS = 5
 #Obtain data with triggering disabled
 data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
 _, (ax1) = plt.subplots(1)
