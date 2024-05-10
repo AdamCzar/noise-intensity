@@ -162,6 +162,7 @@ def get_scope_records(scope_module, num_records: int):
 
 def plot_time_domain(axis, scope_records, scope_input_channel):
     colors = cm.rainbow(np.linspace(0, 1, len(scope_records)))
+    clockbase = device.clockbase()
 
     def to_timestamp(record):
         totalsamples = record[0]["totalsamples"]
