@@ -82,7 +82,7 @@ def initialize():
     wave_node = device.scopes[0].wave
     scope_module.subscribe(wave_node)
     
-    return device, scope_module
+    return session, device, scope_module
 
 
 # Obtain scope records from the device using an instance of the Scope Module.
@@ -113,7 +113,7 @@ def check_scope_record_flags(scope_records, num_records):
             ), f"Scope record {index}/{num_records} size does not match totalsamples."
 
 
-def get_scope_records(scope_module, num_records: int):
+def get_scope_records(session, scope_module, num_records: int):
     """Obtain scope records from the device using an instance of the Scope Module."""
     scope_module.execute()
     device.scopes[0].enable(True)
@@ -188,10 +188,10 @@ def extract_stats(records):
     return np.array(voltages), np.array(noises)
 
 
-device, scope_module = initialize()
+session, device, scope_module = initialize()
 MIN_NUMBER_OF_RECORDS = 5
 #Obtain data with triggering disabled
-data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
+data_no_trig = get_scope_records(session, scope_module, MIN_NUMBER_OF_RECORDS)
 _, (ax1) = plt.subplots(1)
 
 # Plot the scope data with triggering disabled.
