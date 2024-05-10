@@ -81,6 +81,8 @@ def initialize():
     # Subscribing to the scope node data
     wave_node = device.scopes[0].wave
     scope_module.subscribe(wave_node)
+    
+    return device, scope_module
 
 
 # Obtain scope records from the device using an instance of the Scope Module.
@@ -186,7 +188,7 @@ def extract_stats(records):
     return np.array(voltages), np.array(noises)
 
 
-initialize()
+device, scope_module = initialize()
 #Obtain data with triggering disabled
 data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
 _, (ax1) = plt.subplots(1)
