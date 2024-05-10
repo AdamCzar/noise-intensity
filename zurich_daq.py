@@ -13,10 +13,12 @@ def initialize():
     # IP address of the host computer where the Data Servers run
     server_host = 'localhost'
     # A session opened to LabOne Data Server
+    global session
     session = Session(server_host)
     # A session opened to HF2 Data Server
     hf2_session = Session(server_host, hf2=True)
 
+    global device
     device = session.connect_device("DEV2142") # Insert devices serial number here (this should be set now to the one we have - UHFLI)
 
     SCOPE_CHANNEL = 0
@@ -71,6 +73,7 @@ def initialize():
     # Initializing Scope Module
     #MIN_NUMBER_OF_RECORDS = 5
 
+    global scope_module
     scope_module = session.modules.scope
     scope_module.mode(1)
     scope_module.averager.weight(1)
@@ -79,10 +82,11 @@ def initialize():
 
 
     # Subscribing to the scope node data
+    global wave_node
     wave_node = device.scopes[0].wave
     scope_module.subscribe(wave_node)
     
-    return session, device, scope_module
+    #return session, device, scope_module, wave_node
 
 
 # Obtain scope records from the device using an instance of the Scope Module.
@@ -113,7 +117,7 @@ def check_scope_record_flags(scope_records, num_records):
             ), f"Scope record {index}/{num_records} size does not match totalsamples."
 
 
-def get_scope_records(session, scope_module, num_records: int):
+def get_scope_records(scope_module, num_records: int):
     """Obtain scope records from the device using an instance of the Scope Module."""
     scope_module.execute()
     device.scopes[0].enable(True)
@@ -188,10 +192,11 @@ def extract_stats(records):
     return np.array(voltages), np.array(noises)
 
 
-session, device, scope_module = initialize()
+#session, device, scope_module, wave_node = initialize()
+initialize()
 MIN_NUMBER_OF_RECORDS = 5
 #Obtain data with triggering disabled
-data_no_trig = get_scope_records(session, scope_module, MIN_NUMBER_OF_RECORDS)
+data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
 _, (ax1) = plt.subplots(1)
 
 # Plot the scope data with triggering disabled.
