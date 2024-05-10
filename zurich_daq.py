@@ -60,7 +60,7 @@ def initialize():
 
 
     # Configuring Scope
-    SCOPE_TIME = 0
+    SCOPE_TIME = 13 # This selects the index of the desired sampling rate from the menu. In this case, 13 corresponds to 220 kHz.
 
     with device.set_transaction():
         device.scopes[0].length(2 ** 16) # Setting length(pts) = 2**16 = 65536
