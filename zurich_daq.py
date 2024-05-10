@@ -22,6 +22,8 @@ def initialize():
     global device
     device = session.connect_device("DEV2142") # Insert devices serial number here (this should be set now to the one we have - UHFLI)
 
+    global SCOPE_CHANNEL
+    global SIGNAL_INPUT
     SCOPE_CHANNEL = 0
     SIGNAL_INPUT = 0
     #SIGNAL_OUTPUT = 0 # Not using outputs
