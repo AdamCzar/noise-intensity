@@ -7,6 +7,7 @@ Adapted from https://docs.zhinst.com/zhinst-toolkit/en/latest/examples/scope_mod
 from zhinst.toolkit import Session
 import time
 import numpy as np
+import matplotlib.pyplot as plt
 
 def initialize():
 
