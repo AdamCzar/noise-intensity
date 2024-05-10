@@ -189,7 +189,7 @@ def extract_stats(records):
 initialize()
 #Obtain data with triggering disabled
 data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
-, (ax1) = plt.subplots(1)
+_, (ax1) = plt.subplots(1)
 
 # Plot the scope data with triggering disabled.
 plot_time_domain(ax1, data_no_trig, SCOPE_CHANNEL)
