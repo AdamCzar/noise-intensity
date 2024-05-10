@@ -150,6 +150,30 @@ def get_scope_records(scope_module, num_records: int):
     return data
 
 
+def plot_time_domain(axis, scope_records, scope_input_channel):
+    colors = cm.rainbow(np.linspace(0, 1, len(scope_records)))
+
+    def to_timestamp(record):
+        totalsamples = record[0]["totalsamples"]
+        dt = record[0]["dt"]
+        timestamp = record[0]["timestamp"]
+        triggertimestamp = record[0]["triggertimestamp"]
+        t = np.arange(-totalsamples, 0) * dt + (
+            timestamp - triggertimestamp
+        ) / float(clockbase)
+        return 1e6 * t
+
+    for index, record in enumerate(scope_records):
+        wave = record[0]["wave"][scope_input_channel, :]
+        ts = to_timestamp(record)
+        axis.plot(ts, wave, color=colors[index])
+
+    plt.draw()
+    axis.grid(True)
+    axis.set_ylabel("Amplitude [V]")
+    axis.autoscale(enable=True, axis="x", tight=True)
+
+
 
 # Extract statistics from records
 def extract_stats(records):
@@ -162,7 +186,12 @@ def extract_stats(records):
     return np.array(voltages), np.array(noises)
 
 
-
+initialize()
 #Obtain data with triggering disabled
 data_no_trig = get_scope_records(scope_module, MIN_NUMBER_OF_RECORDS)
+, (ax1) = plt.subplots(1)
 
+# Plot the scope data with triggering disabled.
+plot_time_domain(ax1, data_no_trig, SCOPE_CHANNEL)
+ax1.set_title(f"{len(data_no_trig)} Scope records from {device} (triggering disabled)")
+plt.show()
