@@ -196,7 +196,7 @@ def extract_stats(records):
         
     return np.array(voltages), np.array(noises)
 
-
+'''
 #session, device, scope_module, wave_node = initialize()
 initialize()
 MIN_NUMBER_OF_RECORDS = 5
@@ -208,3 +208,4 @@ _, (ax1) = plt.subplots(1)
 plot_time_domain(ax1, data_no_trig, SCOPE_CHANNEL)
 ax1.set_title(f"{len(data_no_trig)} Scope records from {device} (triggering disabled)")
 plt.show()
+'''
