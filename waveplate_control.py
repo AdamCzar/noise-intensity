@@ -82,17 +82,17 @@ def activate(controller):
         print(controller.Position.ToString())
         
         # Jog motor single step
-        print('Jogging Motor')
-        controller.MoveJog(MotorDirection.Forward, 60000)
+        #print('Jogging Motor')
+        #controller.MoveJog(MotorDirection.Forward, 60000)
         
-        print(controller.Position.ToString())
+        #print(controller.Position.ToString())
         
         # Move to user position
-        print('Moving Motor')
-        controller.MoveTo(Decimal(user_position), 0) # immediately continue
-        time.sleep(.25)
+        #print('Moving Motor')
+        #controller.MoveTo(Decimal(user_position), 0) # immediately continue
+        #time.sleep(.25)
         
-        print(controller.Position.ToString())
+        #print(controller.Position.ToString())
         
         
         
@@ -102,6 +102,6 @@ def close_controller(controller):
     controller.StopPolling()
     controller.Disconnect(False)
         
-main()
+#main()
     
     

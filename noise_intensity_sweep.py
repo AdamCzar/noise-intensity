@@ -27,15 +27,16 @@ thor.activate(controller)
 
 # Conduct sweep
 print('Moving Motor to start')
-controller.MoveTo(Decimal(start), 0) # immediately continue
-time.sleep(.25)
+controller.MoveTo(Decimal(start), 60000) # immediately continue
+time.sleep(2)
 
 # Sweep specified range
 n = int((end - start)/step)
 print('Sweeping')
 for i in range(n):
     current_pos = controller.Position.ToString()
-    controller.MoveTo(Decimal(current_pos) + Decimal(step))
+    controller.MoveTo(Decimal(current_pos) + Decimal(step), 60000)
+    time.sleep(0.25)
     
     #Obtain data with triggering disabled
     data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
