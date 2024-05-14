@@ -1,6 +1,26 @@
 import waveplate_control as thor
 import zurich_daq as scope
+
+# imports for Thorlabs
 import time
+import clr # need to import pythonnet (can be done from pip)
+
+
+# to access dll namespaces from Thorlabs, we need to first add the references
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.DeviceManagerCLI.dll")
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.GenericMotorCLI.dll")
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.TCube.DCServoCLI.dll")
+
+# import methods/objects from Thorlabs namespaces
+#import Thorlabs.MotionControl.DeviceManagerCLI as DeviceManagerCLI
+from Thorlabs.MotionControl.DeviceManagerCLI import *
+#import Thorlabs.MotionControl.GenericMotorCLI as GenericMotorCLI
+from Thorlabs.MotionControl.GenericMotorCLI import *
+from Thorlabs.MotionControl.GenericMotorCLI.ControlParameters import JogParametersBase
+#import Thorlabs.MotionControl.TCube.DCServoCLI as DCServoCLI
+from Thorlabs.MotionControl.TCube.DCServoCLI import *
+from System import Decimal # Kinesis libraries use Decimal type for move parameters and stage settings
+
 
 # Initialize sweep parameters
 start_angle = 50.3
