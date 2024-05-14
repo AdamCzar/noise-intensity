@@ -23,8 +23,8 @@ thor.configure_Thorlabs()
 serial_num = str('83835052') # use S/N of T Cube controller
 #controller = thor.connect_controller(serial_num)
 
-DeviceManagerCLI.BuildDeviceList() # load available devices into memory
-controller = TCubeDCServo.CreateTCubeDCServo(serial_num) # create controller variable
+thor.DeviceManagerCLI.BuildDeviceList() # load available devices into memory
+controller = thor.TCubeDCServo.CreateTCubeDCServo(serial_num) # create controller variable
 
 if not controller == None: # check if connection worked
     controller.Connect(serial_num)
