@@ -9,10 +9,12 @@ clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.G
 clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.TCube.DCServoCLI.dll")
 
 # import methods/objects from Thorlabs namespaces
-import Thorlabs.MotionControl.DeviceManagerCLI as DeviceManagerCLI
-import Thorlabs.MotionControl.GenericMotorCLI as GenericMotorCLI
+#import Thorlabs.MotionControl.DeviceManagerCLI as DeviceManagerCLI
+from Thorlabs.MotionControl.DeviceManagerCLI import *
+#import Thorlabs.MotionControl.GenericMotorCLI as GenericMotorCLI
+from Thorlabs.MotionControl.GenericMotorCLI import *
 from Thorlabs.MotionControl.GenericMotorCLI.ControlParameters import JogParametersBase
-import Thorlabs.MotionControl.TCube.DCServoCLI as DCServoCLI
+#import Thorlabs.MotionControl.TCube.DCServoCLI as DCServoCLI
 from System import Decimal # Kinesis libraries use Decimal type for move parameters and stage settings
 
 def configure_Thorlabs():
