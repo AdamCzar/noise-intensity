@@ -187,7 +187,7 @@ def plot_time_domain(axis, scope_records, scope_input_channel):
 
 
 # Extract statistics from records
-def extract_stats(scope_records, scope_input_channel):
+def extract_stats(scope_records, scope_input_channel = 0):
     voltages = []
     noises = []
     
