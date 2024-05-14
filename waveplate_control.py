@@ -3,6 +3,11 @@ import time
 import clr # need to import pythonnet (can be done from pip)
 
 
+# to access dll namespaces from Thorlabs, we need to first add the references
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.DeviceManagerCLI.dll")
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.GenericMotorCLI.dll")
+clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.TCube.DCServoCLI.dll")
+
 # import methods/objects from Thorlabs namespaces
 import Thorlabs.MotionControl.DeviceManagerCLI as DeviceManagerCLI
 import Thorlabs.MotionControl.GenericMotorCLI as GenericMotorCLI
@@ -11,10 +16,7 @@ import Thorlabs.MotionControl.TCube.DCServoCLI as DCServoCLI
 from System import Decimal # Kinesis libraries use Decimal type for move parameters and stage settings
 
 def configure_Thorlabs():
-    # to access dll namespaces from Thorlabs, we need to first add the references
-    clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.DeviceManagerCLI.dll")
-    clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.GenericMotorCLI.dll")
-    clr.AddReference("C:\\Program Files\\Thorlabs\\Kinesis\\Thorlabs.MotionControl.TCube.DCServoCLI.dll")
+    return None
 
     
     
