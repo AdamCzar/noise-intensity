@@ -15,6 +15,7 @@ from Thorlabs.MotionControl.DeviceManagerCLI import *
 from Thorlabs.MotionControl.GenericMotorCLI import *
 from Thorlabs.MotionControl.GenericMotorCLI.ControlParameters import JogParametersBase
 #import Thorlabs.MotionControl.TCube.DCServoCLI as DCServoCLI
+from Thorlabs.MotionControl.TCube.DCServoCLI import *
 from System import Decimal # Kinesis libraries use Decimal type for move parameters and stage settings
 
 def configure_Thorlabs():
