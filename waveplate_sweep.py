@@ -51,7 +51,7 @@ def sweep(controller, start, end, step, n_records):
         #Obtain data with triggering disabled
         data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
         
-        print(data_no_trig)
+        #print(data_no_trig)
 
         v, n = scope.extract_stats(data_no_trig)
         voltages.append(v)

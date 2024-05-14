@@ -187,12 +187,28 @@ def plot_time_domain(axis, scope_records, scope_input_channel):
 
 
 # Extract statistics from records
-def extract_stats(records):
+def extract_stats(scope_records, scope_input_channel):
     voltages = []
     noises = []
-    for record in records:
-        voltages.append(np.mean(record))
-        noises.append(np.std(record))
+    
+    clockbase = device.clockbase()
+
+    def to_timestamp(record):
+        totalsamples = record[0]["totalsamples"]
+        dt = record[0]["dt"]
+        timestamp = record[0]["timestamp"]
+        triggertimestamp = record[0]["triggertimestamp"]
+        t = np.arange(-totalsamples, 0) * dt + (
+            timestamp - triggertimestamp
+        ) / float(clockbase)
+        return 1e6 * t
+
+    for index, record in enumerate(scope_records):
+        wave = record[0]["wave"][scope_input_channel, :]
+        ts = to_timestamp(record)
+    
+        voltages.append(np.mean(wave))
+        noises.append(np.std(wave))
         
     return np.array(voltages), np.array(noises)
 
