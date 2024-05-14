@@ -50,8 +50,15 @@ def sweep(controller, start, end, step):
     
 def move(controller, position):
     print('Step to ' + str(position))
-    controller.MoveTo(Decimal(position), 0) # immediately continue
+    controller.MoveTo(Decimal(position), 60000)
     time.sleep(.25)
+    
+def step(controller, step):
+    print('Stepping')
+    current_pos = controller.Position.ToString()
+    controller.MoveTo(Decimal(current_pos) + Decimal(step), 60000)
+    time.sleep(0.25)
+    
     
 def activate(controller, serial_num):
     
