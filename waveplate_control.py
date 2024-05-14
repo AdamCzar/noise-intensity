@@ -97,7 +97,7 @@ def activate(controller):
         
         
     
-def close_controller(controller)    
+def close_controller(controller):  
     # Close controller
     controller.StopPolling()
     controller.Disconnect(False)
