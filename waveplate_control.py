@@ -82,8 +82,8 @@ def activate(controller, serial_num):
         
         print(f"Controller {serial_num} = {info.Name}")
 
-        print('Homing Motor')
-        controller.Home(60000) # if command does not complete by the end of this time, it will throw an error
+        #print('Homing Motor')
+        #controller.Home(60000) # if command does not complete by the end of this time, it will throw an error
         
         # to change the jog params of the translation stage, first import them with the GetJogParams method and then modify
         jog_params = controller.GetJogParams()

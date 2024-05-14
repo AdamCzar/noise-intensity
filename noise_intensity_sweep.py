@@ -27,16 +27,17 @@ thor.activate(controller, serial_num)
 
 # Conduct sweep
 print('Moving Motor to start')
-controller.MoveTo(Decimal(start), 60000) # immediately continue
+#controller.MoveTo(Decimal(start), 60000) # immediately continue
+thor.move(controller, start_angle)
 time.sleep(2)
 
 # Sweep specified range
-n = int((end - start)/step)
+n = int((end_angle - start_angle)/step_angle)
 print('Sweeping')
 for i in range(n):
     #current_pos = controller.Position.ToString()
     #controller.MoveTo(Decimal(current_pos) + Decimal(step), 60000)
-    thor.step(controller, step)
+    thor.step(controller, step_angle)
     #time.sleep(0.25)
     
     #Obtain data with triggering disabled
