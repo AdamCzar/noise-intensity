@@ -2,6 +2,8 @@
 import time
 import clr # need to import pythonnet (can be done from pip)
 import zurich_daq as scope
+import matplotlib.pyplot as plt
+
 
 
 # to access dll namespaces from Thorlabs, we need to first add the references
