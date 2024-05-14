@@ -1,5 +1,6 @@
 import waveplate_control as thor
 import zurich_daq as scope
+import time
 
 # Initialize sweep parameters
 start_angle = 50.3
