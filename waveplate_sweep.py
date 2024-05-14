@@ -124,7 +124,7 @@ if not controller == None: # check if connection worked
     controller.Disconnect(False)
     
     
-if voltages not None:    
+if voltages:    
     plt.scatter(voltages, noises)
     plt.xlabel('Voltage (V)')
     plt.ylabel('Voltage STD (V)')
