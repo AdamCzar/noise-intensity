@@ -35,7 +35,7 @@ if not controller == None: # check if connection worked
     # Conduct sweep
     print('Moving Motor to start')
     #controller.MoveTo(Decimal(start), 60000) # immediately continue
-    thor.move(controller, start_angle)
+    thor.move(controller, float(start_angle))
     time.sleep(2)
 
     # Sweep specified range
