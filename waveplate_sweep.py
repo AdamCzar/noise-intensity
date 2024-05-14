@@ -24,16 +24,18 @@ step_angle = 0.01
 
 n_records = 5 # number of time traces (aka records) per waveplate step
 
-# Initialize data arrays
-voltages = []
-noises = []
+
 
 
 # Initialize Zurich instrument and subscribe to scope module
 scope.initialize()
 
 
-def sweep(controller, start, end, step):
+def sweep(controller, start, end, step, n_records):
+    # Initialize data arrays
+    voltages = []
+    noises = []
+    
     print('Moving Motor to start')
     controller.MoveTo(Decimal(start), 60000) # immediately continue
     time.sleep(2)
@@ -45,9 +47,19 @@ def sweep(controller, start, end, step):
         current_pos = controller.Position.ToString()
         print(current_pos)
         controller.MoveTo(Decimal(float(current_pos)+float(step)), 60000)
-        time.sleep(.25)
         
+        #Obtain data with triggering disabled
+        data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
+
+        v, n = scope.extract_stats(data_no_trig)
+        voltages.append(v)
+        noises.append(n)
+        
+        time.sleep(.25)
+            
     print('Finished Sweeping')
+    
+    return voltages, noises
     
     
 #def main():
@@ -105,11 +117,18 @@ if not controller == None: # check if connection worked
     print(controller.Position.ToString())
 
     #sweep(controller, 60, 60.5, 0.1)
-    sweep(controller, start_angle, end_angle, step_angle)
+    voltages, noises = sweep(controller, start_angle, end_angle, step_angle, n_records)
     
     # Close controller
     controller.StopPolling()
     controller.Disconnect(False)
+    
+    
+if voltages not None:    
+    plt.scatter(voltages, noises)
+    plt.xlabel('Voltage (V)')
+    plt.ylabel('Voltage STD (V)')
+    plt.show()
         
 #main()
     
