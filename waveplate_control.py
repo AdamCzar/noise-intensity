@@ -50,7 +50,7 @@ def sweep(controller, start, end, step):
     
 def move(controller, position):
     print('Step to ' + str(position))
-    controller.MoveTo(Decimal(position), 60000)
+    controller.MoveTo(Decimal(position), 600000)
     time.sleep(.25)
     
 def step(controller, step):
