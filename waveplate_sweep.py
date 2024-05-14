@@ -47,7 +47,7 @@ def sweep(controller, start, end, step, n_records):
     print('Sweeping')
     for i in range(n):
         current_pos = controller.Position.ToString()
-        print(current_pos)
+        print(current_pos, '\n')
         controller.MoveTo(Decimal(float(current_pos)+float(step)), 60000)
         
         #Obtain data with triggering disabled
@@ -61,7 +61,7 @@ def sweep(controller, start, end, step, n_records):
         
         time.sleep(.25)
             
-    print('Finished Sweeping')
+    print('Finished Sweeping \n')
     
     return voltages, noises
     
