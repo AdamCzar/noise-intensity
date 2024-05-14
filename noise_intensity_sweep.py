@@ -29,7 +29,7 @@ if not controller == None: # check if connection worked
     if not controller.IsSettingsInitialized(): # wait for connection and initialization
         controller.WaitForSettingsInitialized(3000) # in units of ms
 
-    thor.activate(controller, serial_num)
+    controller = thor.activate(controller, serial_num)
 
 
     # Conduct sweep

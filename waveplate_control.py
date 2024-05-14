@@ -90,6 +90,8 @@ def activate(controller, serial_num):
     controller.SetJogParams(jog_params)
 
     print(controller.Position.ToString())
+    
+    return controller
 
     # Jog motor single step
     #print('Jogging Motor')
