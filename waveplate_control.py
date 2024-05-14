@@ -53,7 +53,7 @@ def move(controller, position):
     controller.MoveTo(Decimal(position), 0) # immediately continue
     time.sleep(.25)
     
-def activate(controller):
+def activate(controller, serial_num):
     
     if not controller == None: # check if connection worked
         controller.Connect(serial_num)

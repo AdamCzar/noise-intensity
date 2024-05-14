@@ -22,7 +22,7 @@ thor.configure_Thorlabs()
 
 serial_num = str('83835052') # use S/N of T Cube controller
 controller = thor.connect_controller(serial_num)
-thor.activate(controller)
+thor.activate(controller, serial_num)
 
 
 # Conduct sweep
