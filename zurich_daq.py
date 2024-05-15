@@ -210,7 +210,7 @@ def extract_stats(scope_records, scope_input_channel = 0):
         voltages.append(np.mean(wave))
         noises.append(np.std(wave))
         
-    return np.array(voltages), np.array(noises)
+    return voltages, noises
 
 '''
 #session, device, scope_module, wave_node = initialize()
