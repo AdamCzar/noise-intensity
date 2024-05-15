@@ -21,8 +21,8 @@ from System import Decimal # Kinesis libraries use Decimal type for move paramet
 
 # Initialize sweep parameters
 start_angle = 35.5
-end_angle = 35.6
-step_angle = 0.01
+end_angle = 35.8
+step_angle = 0.02
 
 n_records = 5 # number of time traces (aka records) per waveplate step
 
