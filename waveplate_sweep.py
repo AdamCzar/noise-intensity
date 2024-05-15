@@ -20,8 +20,8 @@ from System import Decimal # Kinesis libraries use Decimal type for move paramet
 
 
 # Initialize sweep parameters
-start_angle = 50.3
-end_angle = 50.5
+start_angle = 35.5
+end_angle = 35.6
 step_angle = 0.01
 
 n_records = 5 # number of time traces (aka records) per waveplate step
@@ -49,6 +49,7 @@ def sweep(controller, start, end, step, n_records):
         current_pos = controller.Position.ToString()
         print(current_pos, '\n')
         controller.MoveTo(Decimal(float(current_pos)+float(step)), 60000)
+        time.sleep(0.5)
         
         #Obtain data with triggering disabled
         data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
@@ -113,12 +114,12 @@ if not controller == None: # check if connection worked
     #controller.MoveJog(MotorDirection.Forward, 60000)
     #time.sleep(.25)
     
-    print(controller.Position.ToString())
+    #print(controller.Position.ToString())
     
     # Move to user position
-    print('Moving Motor')
-    controller.MoveTo(Decimal(50.3), 60000) # immediately continue
-    time.sleep(2)
+    #print('Moving Motor')
+    #controller.MoveTo(Decimal(50.3), 60000) # immediately continue
+    #time.sleep(2)
     
     print(controller.Position.ToString())
 
