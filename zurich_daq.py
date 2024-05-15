@@ -42,7 +42,7 @@ def initialize():
         #device.sigouts[SIGNAL_OUTPUT].enables[OUT_MIXER_CHANNEL](True)
 
         # Set impedance and coupling mode
-        device.sigins[SIGNAL_INPUT].imp50(1)
+        device.sigins[SIGNAL_INPUT].imp50(0)
         device.sigins[SIGNAL_INPUT].ac(0)
 
         OSC_INDEX = 0
