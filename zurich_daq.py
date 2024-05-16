@@ -65,7 +65,7 @@ def initialize():
     with device.set_transaction():
         device.scopes[0].length(2 ** 16) # Setting length(pts) = 2**16 = 65536
         device.scopes[0].channel(1)
-        device.scopes[0].channels[0].bwlimit(1)
+        device.scopes[0].channels[0].bwlimit(0) # Turn on/off BW Limit; seen in Advanced settings in scope module
         device.scopes[0].channels[0].inputselect(SIGNAL_INPUT)
         device.scopes[0].time(SCOPE_TIME)
         device.scopes[0].single(False)
