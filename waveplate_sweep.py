@@ -49,7 +49,7 @@ def sweep(controller, start, end, step, n_records):
         current_pos = controller.Position.ToString()
         print(current_pos, '\n')
         controller.MoveTo(Decimal(float(current_pos)+float(step)), 60000)
-        time.sleep(0.5)
+        time.sleep(1)
         
         #Obtain data with triggering disabled
         data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
