@@ -58,12 +58,11 @@ def sweep(controller, start, end, step, n_records):
         #print(data_no_trig)
 
         v, n = scope.extract_stats(data_no_trig)
-        #voltages.append(v)
-        #noises.append(n)
         voltages += v
-        #voltages.append(v[0])
         noises += n
-        angles.append(float(current_pos))
+        
+        for i in v:
+            angles.append(float(current_pos))
         
         time.sleep(.25)
             
@@ -134,7 +133,25 @@ if not controller == None: # check if connection worked
     controller.Disconnect(False)
     
     
-if len(voltages) > 0:    
+if len(voltages) > 0:
+    # Create a figure and two subplots (axes) that share the same x-axis
+    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+
+    # Plot voltages on the first subplot
+    ax1.plot(angles, voltages)  # 'b-' is for blue solid line
+    ax1.set_ylabel('Voltage (V)')
+    #ax1.set_title('Voltages and Noises vs Angles')
+
+    # Plot noises on the second subplot
+    ax2.plot(angles, noises)  # 'r-' is for red solid line
+    ax2.set_ylabel('Voltage STD (V)')
+    ax2.set_xlabel('Waveplate Angle (deg)')
+
+    # Display the plots
+    plt.tight_layout()
+    plt.show()
+    
+    '''
     plt.scatter(voltages, noises)
     plt.xlabel('Voltage (V)')
     plt.ylabel('Voltage STD (V)')
@@ -142,7 +159,7 @@ if len(voltages) > 0:
     #plt.xlabel('Angle (deg)')
     #plt.ylabel('Voltage (V)')
     plt.show()
-        
+    '''
 #main()
     
     
