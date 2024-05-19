@@ -20,11 +20,11 @@ from System import Decimal # Kinesis libraries use Decimal type for move paramet
 
 
 # Initialize sweep parameters
-start_angle = 35.8
-end_angle = 36.2
-step_angle = 0.02
+start_angle = 5
+end_angle = 24
+step_angle = 0.1
 
-n_records = 5 # number of time traces (aka records) per waveplate step
+n_records = 3 # number of time traces (aka records) per waveplate step
 
 
 
@@ -37,6 +37,7 @@ def sweep(controller, start, end, step, n_records):
     # Initialize data arrays
     voltages = []
     noises = []
+    angles = []
     
     print('Moving Motor to start')
     controller.MoveTo(Decimal(start), 60000) # immediately continue
@@ -49,7 +50,7 @@ def sweep(controller, start, end, step, n_records):
         current_pos = controller.Position.ToString()
         print(current_pos, '\n')
         controller.MoveTo(Decimal(float(current_pos)+float(step)), 60000)
-        time.sleep(1)
+        time.sleep(0.5)
         
         #Obtain data with triggering disabled
         data_no_trig = scope.get_scope_records(scope.scope_module, n_records)
@@ -60,13 +61,15 @@ def sweep(controller, start, end, step, n_records):
         #voltages.append(v)
         #noises.append(n)
         voltages += v
+        #voltages.append(v[0])
         noises += n
+        angles.append(float(current_pos))
         
         time.sleep(.25)
             
     print('Finished Sweeping \n')
     
-    return voltages, noises
+    return voltages, noises, angles
     
     
 #def main():
@@ -124,17 +127,20 @@ if not controller == None: # check if connection worked
     print(controller.Position.ToString())
 
     #sweep(controller, 60, 60.5, 0.1)
-    voltages, noises = sweep(controller, start_angle, end_angle, step_angle, n_records)
+    voltages, noises, angles = sweep(controller, start_angle, end_angle, step_angle, n_records)
     
     # Close controller
     controller.StopPolling()
     controller.Disconnect(False)
     
     
-if voltages:    
+if len(voltages) > 0:    
     plt.scatter(voltages, noises)
     plt.xlabel('Voltage (V)')
     plt.ylabel('Voltage STD (V)')
+    #plt.scatter(angles, voltages)
+    #plt.xlabel('Angle (deg)')
+    #plt.ylabel('Voltage (V)')
     plt.show()
         
 #main()
