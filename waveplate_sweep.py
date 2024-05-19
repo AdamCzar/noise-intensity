@@ -138,12 +138,12 @@ if len(voltages) > 0:
     fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
     # Plot voltages on the first subplot
-    ax1.plot(angles, voltages)  # 'b-' is for blue solid line
+    ax1.scatter(angles, voltages)  # 'b-' is for blue solid line
     ax1.set_ylabel('Voltage (V)')
     #ax1.set_title('Voltages and Noises vs Angles')
 
     # Plot noises on the second subplot
-    ax2.plot(angles, noises)  # 'r-' is for red solid line
+    ax2.scatter(angles, noises)  # 'r-' is for red solid line
     ax2.set_ylabel('Voltage STD (V)')
     ax2.set_xlabel('Waveplate Angle (deg)')
 
