@@ -156,7 +156,7 @@ if len(voltages) > 0:
     # save data to text file
     file_name = input('Enter the file name (with extension ie .txt): ')
     data = np.column_stack((np.array(angles), np.array(voltages), np.array(noises)))
-    np.savetxt(file_name, data, fmt='%.8f', delimeter = '\t', header = 'Angle (deg)\tVoltage (V)\tVoltage STD (V)')
+    np.savetxt(file_name, data, fmt='%.8f', delimiter = '\t', header = 'Angle (deg)\tVoltage (V)\tVoltage STD (V)')
     
     '''
     plt.scatter(voltages, noises)
