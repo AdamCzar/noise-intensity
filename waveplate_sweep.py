@@ -128,6 +128,7 @@ if not controller == None: # check if connection worked
     #sweep(controller, 60, 60.5, 0.1)
     voltages, noises, angles = sweep(controller, start_angle, end_angle, step_angle, n_records)
     
+    
     # Close controller
     controller.StopPolling()
     controller.Disconnect(False)
@@ -150,6 +151,11 @@ if len(voltages) > 0:
     # Display the plots
     plt.tight_layout()
     plt.show()
+    
+    # save data to text file
+    file_name = input('Enter the file name (with extension ie .txt): ')
+    data = np.column_stack((np.array(angles), np.array(voltages), np.array(noises)))
+    np.savetxt(file_name, data, fmt='%.8f', delimeter = '\t', header = 'Angle (deg)\tVoltage (V)\tVoltage STD (V)')
     
     '''
     plt.scatter(voltages, noises)
