@@ -3,6 +3,7 @@ import time
 import clr # need to import pythonnet (can be done from pip)
 import zurich_daq as scope
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 
